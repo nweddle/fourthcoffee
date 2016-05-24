@@ -27,6 +27,11 @@ remote_directory node['fourthcoffee']['install_path'] do
   action :create
 end
 
+template "#{node['fourthcoffee']['install_path']}/Default.cshtml" do
+  source "Default.cshtml.erb"
+  action :create
+end
+
 iis_pool 'FourthCoffee' do
   runtime_version "4.0"
   action :add
