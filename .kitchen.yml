@@ -10,24 +10,28 @@ driver:
 transport:
   name: winrm
 
+verifier:
+  name: inspec
+
 provisioner:
   name: chef_zero
 
+driver_config:
+  subscription_id: "1e0b427a-d58b-494e-ae4f-ee558463ebbf"
+  #location: "West US"
+  location: "japaneast"
+  machine_size: "Standard_D2"
+  image_urn: MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:latest
+
 platforms:
-  - name: win2012r2
-    driver_config:
-      box: eltuko/win2012r2-chef-pester
   - name: win2012-r2-azure
     driver:
       name: azurerm
-    driver_config:
-      subscription_id: "1e0b427a-d58b-494e-ae4f-ee558463ebbf"
-      #location: "West US"
-      location: "japaneast"
-      machine_size: "Standard_D2"
-      image_urn: MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:latest
-    transport:
-      name: winrm
+  - name: win2012-r2-asure
+    run_list:
+      - recipe[fourthcoffee::blank]
+    driver:
+      name: azurerm
 
 suites:
 - name: default
@@ -35,4 +39,4 @@ suites:
     - 'recipe[fourthcoffee]'
   attributes:
     fourthcoffee:
-      install_method: _classic
+      install_method: _dsc

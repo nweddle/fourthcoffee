@@ -42,5 +42,5 @@ iis_site 'FourthCoffee' do
   port 80
   path node['fourthcoffee']['install_path']
   application_pool 'FourthCoffee'
-  action [:add,:start]
+  action [:add, :start]
 end
