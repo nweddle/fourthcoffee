@@ -11,7 +11,6 @@ describe 'fourthcoffee::default' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new(platform: 'windows', version: '2012R2') do |node, server|
         node.set['fourthcoffee']['install_method'] = '_dsc'
-       
         server.update_node(node)
       end
       runner.converge(described_recipe)
@@ -24,7 +23,7 @@ describe 'fourthcoffee::default' do
     it "includes the iis::remove_default_site recipe" do
       expect(chef_run).to include_recipe('iis::remove_default_site')
     end
-    
+
     # Alternative - not really a good unit test practice though!
     #it "Stops the default web site" do
     #  expect { chef_run }.to stop_iis_site('Default Web Site')
