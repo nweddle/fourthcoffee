@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: fourthcoffee
-# Recipe:: default
+# Recipe:: _classic
 #
 # Copyright 2014, Chef Software, Inc.
 #
@@ -22,12 +22,16 @@ windows_feature 'IIS-WebServerRole' do
 end
 
 # Pre-requisite features for IIS-ASPNET45 that need to be installed first, in this order.
-%w{IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx4Extended-ASPNET45 IIS-NetFxExtensibility45}.each do |f|
+%w(IIS-ISAPIFilter IIS-ISAPIExtensions NetFx3ServerFeatures NetFx4Extended-ASPNET45 IIS-NetFxExtensibility45).each do |f|
   windows_feature f do
     action :install
   end
 end
 
 windows_feature 'IIS-ASPNET45' do
+  action :install
+end
+
+windows_feature 'IIS-ManagementConsole' do
   action :install
 end
